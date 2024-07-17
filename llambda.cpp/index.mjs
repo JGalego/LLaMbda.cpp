@@ -1,27 +1,19 @@
-import util from "util";
-import stream from "stream";
-import {getLlama, LlamaChatSession} from "node-llama-cpp";
+import {LlamaModel, LlamaContext, LlamaChatSession} from "node-llama-cpp";
 
-const pipeline = util.promisify(stream.pipeline);
-
-const llama = await getLlama();
-
-const model = await llama.loadModel({
+const model = new LlamaModel({
     modelPath: "model.gguf"
 });
 
 export const handler = awslambda.streamifyResponse(async (event, responseStream, _context) => {
-    const context = await model.createContext();
+    const context = new LlamaContext({model});
 
-    const session = new LlamaChatSession({
-        contextSequence: context.getSequence()
-    });
+    const session = new LlamaChatSession({context});
 
-    const completionStream = await session.prompt(JSON.parse(event.body).message, {
+    await session.prompt(JSON.parse(event.body).message, {
         onToken(chunk) {
-            model.detokenize(chunk);
+            responseStream.write(context.decode(chunk));
         }
     });
 
-    await pipeline(completionStream, responseStream);
+    responseStream.end();
 });

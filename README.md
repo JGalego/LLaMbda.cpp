@@ -30,7 +30,7 @@ Learn how to run [LLaMA.cpp](https://github.com/withcatai/node-llama-cpp) at sca
     sam deploy --guided
 
     # ❗ Don't forget to note down the function URL
-    export FUNCTION_URL=`sam list stack-outputs --stack-name llambda.cpp --output json | jq -r '.[] | select(.OutputKey == "LLaMbdaCppFunctionUrl") | .OutputValue'`
+    export FUNCTION_URL=`sam list stack-outputs --stack-name llambda-cpp --output json | jq -r '.[] | select(.OutputKey == "LLaMbdaCppFunctionUrl") | .OutputValue'`
     ```
 
 2. Test it out!
@@ -38,7 +38,7 @@ Learn how to run [LLaMA.cpp](https://github.com/withcatai/node-llama-cpp) at sca
     **SAM**
 
     ```bash
-    sam remote invoke --stack-name llambda.cpp --event '{"body": "{\"message\": \"Explain the theory of relativity.\"}"}'
+    sam remote invoke --stack-name llambda-cpp --event '{"body": "{\"message\": \"Explain the theory of relativity.\"}"}'
     ```
 
     **cURL**

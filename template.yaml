@@ -7,7 +7,7 @@ Description: >
 Parameters:
   ModelUrl:
     Type: String
-    Default: https://huggingface.co/microsoft/Phi-3-mini-4k-instruct-gguf/blob/main/Phi-3-mini-4k-instruct-q4.gguf
+    Default: https://huggingface.co/microsoft/Phi-3-mini-4k-instruct-gguf/resolve/main/Phi-3-mini-4k-instruct-q4.gguf
     Description: Path to the GGUF model artifact. For more information, see https://huggingface.co/docs/hub/en/gguf
 
 Globals:
