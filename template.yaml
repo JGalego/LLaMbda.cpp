@@ -1,0 +1,43 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  LLaMbda.cpp 🦙🔥
+  Learn how to run LLaMA.cpp at scale on AWS Lambda using function URLs and response streaming
+
+Parameters:
+  ModelUrl:
+    Type: String
+    Default: https://huggingface.co/microsoft/Phi-3-mini-4k-instruct-gguf/blob/main/Phi-3-mini-4k-instruct-q4.gguf
+    Description: Path to the GGUF model artifact. For more information, see https://huggingface.co/docs/hub/en/gguf
+
+Globals:
+  Function:
+    MemorySize: 10240
+    Timeout: 900
+
+Resources:
+  LLaMbdaCppFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      PackageType: Image
+      Architectures:
+        - x86_64
+      Policies:
+        - AWSLambdaExecute
+      FunctionUrlConfig:
+        AuthType: AWS_IAM
+        InvokeMode: RESPONSE_STREAM
+    Metadata:
+      DockerTag: nodejs20.x-v1
+      DockerContext: ./llambda.cpp
+      Dockerfile: Dockerfile
+      DockerBuildArgs:
+        MODEL_URL: !Ref ModelUrl
+
+Outputs:
+  LLaMbdaCppFunction:
+    Description: LLaMbda.cpp Lambda Function ARN
+    Value: !GetAtt LLaMbdaCppFunction.Arn
+  LLaMbdaCppFunctionUrl:
+    Description: LLaMbda.cpp Lambda Function URL
+    Value: !GetAtt LLaMbdaCppFunctionUrl.FunctionUrl

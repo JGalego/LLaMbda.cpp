@@ -1,0 +1,12 @@
+{
+  "name": "llambda.cpp",
+  "version": "1.0.0",
+  "description": "LLaMA.cpp on AWS Lambda",
+  "main": "index.mjs",
+  "author": "João Galego",
+  "license": "ISC",
+  "dependencies": {
+    "node-llama-cpp": "^2.8.12"
+  }
+}
+  
