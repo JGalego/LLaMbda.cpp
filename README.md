@@ -4,6 +4,8 @@
 
 Learn how to run [LLaMA.cpp](https://github.com/withcatai/node-llama-cpp) at scale on [AWS Lambda](https://aws.amazon.com/lambda/) using [function URLs](https://docs.aws.amazon.com/lambda/latest/dg/lambda-urls.html) and [response streaming](https://aws.amazon.com/blogs/compute/introducing-aws-lambda-response-streaming/).
 
+![](llambda.cpp.gif)
+
 ## Prerequisites
 
 Make sure the following tools are installed and properly configured:
