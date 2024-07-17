@@ -4,6 +4,16 @@
 
 Learn how to run [LLaMA.cpp](https://github.com/withcatai/node-llama-cpp) at scale on [AWS Lambda](https://aws.amazon.com/lambda/) using [function URLs](https://docs.aws.amazon.com/lambda/latest/dg/lambda-urls.html) and [response streaming](https://aws.amazon.com/blogs/compute/introducing-aws-lambda-response-streaming/).
 
+## Prerequisites
+
+Make sure the following tools are installed and properly configured:
+
+* [Docker 🐋](https://docs.docker.com/engine/install/): `docker info`
+
+* [AWS SAM CLI 🐿️](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/install-sam-cli.html): `sam --version`
+
+* [jq](https://jqlang.github.io/jq/download/) (*Optional*): `jq --help`
+
 ## Instructions
 
 0. Set up AWS credentials.
@@ -15,6 +25,7 @@ Learn how to run [LLaMA.cpp](https://github.com/withcatai/node-llama-cpp) at sca
     aws configure
 
     # Option 2: environment variables
+	export AWS_DEFAULT_REGION=
     export AWS_ACCESS_KEY_ID=...
     export AWS_SECRET_ACCESS_KEY=...
     export AWS_DEFAULT_REGION=...
